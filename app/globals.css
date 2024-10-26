@@ -2,26 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.custom-scrollbar {
+    overflow-y: auto;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0.5rem; /* Adjusted the scrollbar width to be Tailwind compatible (2px is too thin) */
   }
-}
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background-color: #f3f4f6; /* bg-gray-100 equivalent */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: #d1d5db; /* bg-gray-300 equivalent */
+  }
+  
+  .dark .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #6b7280; /* dark:bg-neutral-500 equivalent */
+  }
+  
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d1d5db; /* dark:bg-neutral-300 equivalent */
+  }
+  
