@@ -2,7 +2,9 @@
 import Razorpay from "razorpay";
 import connectDb from "@/db/connectDb";
 import Payment from "@/models/Payment";
+import jwt from "jsonwebtoken";
 import User from "@/models/User";
+import bcrypt from 'bcryptjs';
 // https://prod.liveshare.vsengsaas.visualstudio.com/join?7D4C03A2E1E07035ED6193728225B6FDF809
 export const initiate = async (amount, receiver, paymentform) => {
   await connectDb();
@@ -38,10 +40,9 @@ export const initiate = async (amount, receiver, paymentform) => {
 export const fetchUser = async(username)=>{
   await connectDb();
   let u = await User.findOne({username:username})
-  console.log(u)
   // Check if user is found
   if (!u) {
-    throw new Error("User not found");
+    console.log("User not found")
   }
   let user = u.toObject({flattenObjectIds : true})
   return user;
@@ -76,3 +77,82 @@ export const updateProfile = async (data, oldusername, oldemail) => {
     return {}; // Return an empty object or some success message if needed
   }
 };
+/*
+export const Login = async (req, res) => {
+  
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+  try {
+    const { email, password } = req.body;
+    await connectDb();
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+      return res.status(404).json({ error: "Email does not exist" });
+    }
+
+    const isValidPass = await bcrypt.compare(password, user.password);
+    if (!isValidPass) {
+      return res.status(401).json({ error: "Password does not match" });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged in successfully",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Something went wrong during login" });
+  }
+};
+
+export const Register = async (req, res) => {
+  const { email, password, confirmPassword } = req.body;
+
+  try {
+    await connectDb();
+
+    const isUsernameExists = await User.findOne({ username });
+    if (isUsernameExists) {
+      return res.status(409).json({ error: "Username already exists" });
+    }
+    if(password.length < 6){
+        return res.status(402).json({error:"password must be 6 length"})
+    }
+    const isEmailExists = await User.findOne({ email: email.toLowerCase() });
+    if (isEmailExists) {
+      return res.status(422).json({ error: "Email already exists" });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(422).json({ error: "Passwords do not match" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = await User.create({
+      name: username,
+      email: email.toLowerCase(),
+      password: hashedPassword,
+    });
+
+    return res.status(201).json({ message: `New user ${newUser.email} registered successfully` });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Something went wrong during registration" });
+  }
+};*/

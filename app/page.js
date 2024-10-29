@@ -3,12 +3,11 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 import { SiCoffeescript } from "react-icons/si";
-
+import { FaAngleRight } from "react-icons/fa6";
 
 
 export default function Home() {
   const {data:session} = useSession();
-  console.log("session",session)
   
   return (
     <>
@@ -53,9 +52,9 @@ export default function Home() {
       <>
         <Link
           href="/login"
-          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-6 py-2 transition duration-200 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+          className="text-gray-900 flex items-center justify-centre gap-1 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-6 py-2 transition duration-200 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
         >
-          Get Started
+          Get Started <FaAngleRight/> 
         </Link>
         <Link
           href="/about"

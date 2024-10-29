@@ -5,6 +5,7 @@ const UserSchema = new Schema({
     name:{type:String},
     username:{type:String, required: true, unique: true },
     profilepic:{type:String},
+    password:{type:String},
     coverpic:{type:String},
     razorpayId :{type:String},
     razorpaySecret:{type:String},

@@ -19,9 +19,7 @@ const Navbar = () => {
     try {
       const u = await fetchUser(session?.user?.name)
       setCurrentUser(u)
-      console.log("currenUser :",currentUser)
     } catch (error) {
-      console.log("can not set user",error)
     }
   }
 
