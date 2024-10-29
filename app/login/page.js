@@ -19,7 +19,7 @@ const LoginPage = () => {
   const router = useRouter();
   useEffect(() => {
     if (session) {
-      router.push("/dashboard");0
+      router.push("/dashboard");
     }
   }, [session, router]);
   const togglePassword = ()=>{
@@ -56,7 +56,7 @@ const LoginPage = () => {
         <div className="md:w-1/2 px-8">
           <h2 className="font-bold text-3xl text-[#002D74]">Login</h2>
           <p className="text-sm mt-4 text-[#002D74]">
-            Don't have account. <Link className="text-blue-950 font-semibold" href={"/register"} >Register</Link>
+            Don not have account. <Link className="text-blue-950 font-semibold" href={"/register"} >Register</Link>
           </p>
 
           <form action={handleSubmit} className="flex flex-col gap-4">

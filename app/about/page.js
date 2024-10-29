@@ -7,7 +7,7 @@ const About = () => {
       
       <section className="mb-8">
         <p className="text-lg text-gray-600">
-          Welcome to <span className="font-semibold">Tea Time</span> — the place where creators and supporters connect over a virtual cup of tea! We're here to make supporting creators easier, warmer, and more meaningful, one cup at a time.
+          Welcome to <span className="font-semibold">Tea Time</span> — the place where creators and supporters connect over a virtual cup of tea! We are here to make supporting creators easier, warmer, and more meaningful, one cup at a time.
         </p>
       </section>
       
@@ -21,7 +21,7 @@ const About = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-3">Our Mission</h2>
         <p className="text-gray-600">
-          Our mission is to empower creators by giving them a space to connect with supporters in a meaningful way. We believe that small acts of support can make a big difference, and we're dedicated to creating a platform where everyone can feel valued and appreciated.
+          Our mission is to empower creators by giving them a space to connect with supporters in a meaningful way. We believe that small acts of support can make a big difference, and we are dedicated to creating a platform where everyone can feel valued and appreciated.
         </p>
       </section>
 
@@ -35,7 +35,7 @@ const About = () => {
       <section>
         <h2 className="text-2xl font-semibold text-gray-800 mb-3">Join Us</h2>
         <p className="text-gray-600">
-          Whether you're a creator or a supporter, we invite you to join the Tea Time community. Together, let's create a world where small gestures of support bring big smiles and a sense of connection. Thank you for being a part of our story.
+          Whether you are a creator or a supporter, we invite you to join the Tea Time community. Together, lets create a world where small gestures of support bring big smiles and a sense of connection. Thank you for being a part of our story.
         </p>
       </section>
     </div>
