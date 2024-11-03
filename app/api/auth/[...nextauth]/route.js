@@ -1,10 +1,6 @@
 import NextAuth from 'next-auth'
-import AppleProvider from 'next-auth/providers/apple'
-import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
-import EmailProvider from 'next-auth/providers/email'
 import GitHubProvider from "next-auth/providers/github";
-import mongoose from 'mongoose'
 import User from '@/models/User'
 import connectDb from '@/db/connectDb'
 

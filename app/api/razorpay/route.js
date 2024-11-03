@@ -35,7 +35,7 @@ export const POST = async (req) => {
       { new: true }
     );
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_URL}/${updatePayment.receiver}?paymentdone=true`
+      `${process.env.NEXTAUTH_URL }/${updatePayment.receiver}?paymentdone=true`
     );
   }else{
     return NextResponse.json({success:false, message:"Payment Verification Failed"})  
