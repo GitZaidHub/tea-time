@@ -52,7 +52,7 @@ const UsersPage = () => {
         key={user._id}
         className="max-w-sm  bg-white shadow-lg rounded-lg text-gray-900 mx-auto"
       >
-        <div className="rounded-t-lg h-36 overflow-hidden">
+        <div className="rounded-t-lg h-36 w-56 overflow-hidden">
           {user.coverpic ? (
             <img
               className="object-cover w-full h-full"
