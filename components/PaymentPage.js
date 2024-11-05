@@ -18,7 +18,7 @@ const PaymentPage = ({ username }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [Payments, setPayments] = useState([]);
   const searchparams = useSearchParams();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -40,27 +40,28 @@ const PaymentPage = ({ username }) => {
       }, 7000); // Delay to match the toast duration
     }
   }, []);
-  
+
   if (loading) {
     return (
       <div class="relative flex justify-center h-screen items-center">
-    <div class="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
-    <img src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"  class="rounded-full h-28 w-28"/>
-</div>
-  );
+        <div class="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+        <img
+          src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
+          class="rounded-full h-28 w-28"
+        />
+      </div>
+    );
   }
 
   const getData = async () => {
-    setLoading(true)
+    setLoading(true);
 
     let u = await fetchUser(username);
     setCurrentUser(u);
     let dbpayment = await fetchPayment(username);
     setPayments(dbpayment);
-    setLoading(false)
-
+    setLoading(false);
   };
-  
 
   const Pay = async (amount) => {
     let a = await initiate(amount, username, paymentform);
@@ -96,17 +97,31 @@ const PaymentPage = ({ username }) => {
       <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
       <Toaster position="top-right" reverseOrder={false} />
       <div className="cover w-full relative bg-red-300">
-        <img
-          className="object-cover w-full h-[350px]"
-          src={currentUser.coverpic}
-          alt="cover picture"
-        />
-        <div className="profile-pic absolute overflow-hidden left-[38%] md:left-[46%] bottom-[-43px] ">
+        {currentUser.coverpic ? (
           <img
-            className="md:w-32 md:h-32 w-28 h-28  object-cover border-2 border-white rounded-full"
-            src={currentUser.profilepic}
-            alt="user photo"
+            className="object-cover w-full h-[350px]"
+            src={currentUser.coverpic}
+            alt="cover picture"
           />
+        ) : (
+          <div className="flex items-center px-6 justify-center w-full h-[350px] bg-gray-300 text-gray-500 font-semibold text-5xl">
+            {currentUser.username ? currentUser.username.toUpperCase() : "?"}
+          </div>
+        )}
+        <div className="profile-pic absolute overflow-hidden left-[38%] md:left-[46%] bottom-[-43px] ">
+          {currentUser.profilepic ? (
+            <img
+              className="md:w-32 md:h-32 w-28 h-28  object-cover border-2 border-white rounded-full"
+              src={currentUser.profilepic}
+              alt="user photo"
+            />
+          ) : (
+            <img
+              className="md:w-32 md:h-32 w-28 h-28  object-cover border-2 border-white rounded-full"
+              src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_960_720.png"
+              alt="user photo"
+            />
+          )}
         </div>
       </div>
       <div className="flex items-center justify-center gap-1  flex-col">
